@@ -4,11 +4,13 @@ from shutil import copy, rmtree
 
 from generate_page import generate_page
 
-basepath = sys.argv[1]
-STATIC = f"{basepath}/static/"
-CONTENT = f"{basepath}/content/"
-DOCS = f"{basepath}/docs/"
-TEMPLATE = f"{basepath}/template.html"
+basepath = "./"
+if len(sys.argv) > 1:
+    basepath = sys.argv[1]
+STATIC = f"{basepath}static/"
+CONTENT = f"{basepath}content/"
+DOCS = f"{basepath}docs/"
+TEMPLATE = f"{basepath}template.html"
 
 
 def copy_from_source_to_destination(base_path: str = STATIC):
@@ -25,12 +27,15 @@ def copy_from_source_to_destination(base_path: str = STATIC):
 
 
 def main():
+    print(basepath, STATIC, CONTENT, DOCS, TEMPLATE)
     if path.exists(STATIC):
+        print("exists")
         if path.exists(DOCS):
+            print("exists but deleted")
             rmtree(DOCS)
         mkdir(DOCS)
         copy_from_source_to_destination()
-        generate_page(CONTENT, TEMPLATE, DOCS)
+        generate_page(basepath, CONTENT, TEMPLATE, DOCS)
 
 
 if __name__ == "__main__":

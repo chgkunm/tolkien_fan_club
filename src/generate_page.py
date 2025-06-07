@@ -1,7 +1,6 @@
 from os import listdir, mkdir, path
 
 from block_mdparser import markdown_to_blocks
-from main import basepath
 from md_to_html import markdown_to_html_node
 
 
@@ -13,7 +12,9 @@ def extract_title(markdown: str) -> str:
     raise ValueError("No Title found")
 
 
-def generate_page(content_dir_path: str, template_path: str, dest_dir_path: str):
+def generate_page(
+    basepath: str, content_dir_path: str, template_path: str, dest_dir_path: str
+):
     if path.exists(content_dir_path):
         content_dir_list = listdir(content_dir_path)
         for i in content_dir_list:
@@ -40,4 +41,4 @@ def generate_page(content_dir_path: str, template_path: str, dest_dir_path: str)
             else:
                 new_dest_path = path.join(dest_dir_path, f"{i}/")
                 mkdir(new_dest_path)
-                generate_page(new_path, template_path, new_dest_path)
+                generate_page(basepath, new_path, template_path, new_dest_path)
