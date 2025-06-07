@@ -33,8 +33,8 @@ def generate_page(
                 html = (
                     template.replace("{{ Title }}", title)
                     .replace("{{ Content }}", content)
-                    .replace('src="/', f"src={basepath}")
-                    .replace('href="/', f"href={basepath}")
+                    .replace('src="/', f'src="{basepath}')
+                    .replace('href="/', f'href="{basepath}')
                 )
                 html_file.write(html)
                 html_file.close()
