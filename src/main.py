@@ -7,10 +7,10 @@ from generate_page import generate_page
 basepath = "./"
 if len(sys.argv) > 1:
     basepath = sys.argv[1]
-STATIC = f"{basepath}static/"
-CONTENT = f"{basepath}content/"
-DOCS = f"{basepath}docs/"
-TEMPLATE = f"{basepath}template.html"
+STATIC = "./static/"
+CONTENT = "./content/"
+DOCS = "./docs/"
+TEMPLATE = "./template.html"
 
 
 def copy_from_source_to_destination(base_path: str = STATIC):
